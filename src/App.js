@@ -17,11 +17,7 @@ function App() {
     axios.get(valContentV1).then((res) => setGetContents(res.data));
   }, []);
 
-  const handleChange = (e) => {
-    Object.keys(getContents).filter(i => (
-      i === e.target.value ? setActiveEntity(getContents[i]) : null
-    ));
-  };
+  const handleChange = e => setActiveEntity(getContents[e.target.value]);
 
   return (
     <Container>
