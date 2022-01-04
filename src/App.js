@@ -4,18 +4,23 @@ import { Container, Row, Col, Form } from 'react-bootstrap';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+const { REACT_APP_VAL_API_KEY } = process.env
+
 const valContentV1 =
-  'https://eu.api.riotgames.com/val/content/v1/contents?api_key=RGAPI-a5b3dffd-3e24-464f-ab21-30151ef97763';
+  `https://eu.api.riotgames.com/val/content/v1/contents?api_key=${REACT_APP_VAL_API_KEY}`;
 
 function App() {
   const [getContents, setGetContents] = useState({});
+  const [activeEntity, setActiveEntity] = useState([]);
 
   useEffect(() => {
     axios.get(valContentV1).then((res) => setGetContents(res.data));
   }, []);
 
   const handleChange = (e) => {
-    console.log(e.target.value);
+    Object.keys(getContents).filter(i => (
+      i === e.target.value ? setActiveEntity(getContents[i]) : null
+    ));
   };
 
   return (
@@ -27,6 +32,13 @@ function App() {
               <option value={ent} key={i}>{ent}</option>
             ))}
           </Form.Select>
+        </Col>
+        <Col>
+              {
+               activeEntity && activeEntity.map((ent) => {
+                 return console.log(ent)
+               })
+              }
         </Col>
       </Row>
     </Container>
