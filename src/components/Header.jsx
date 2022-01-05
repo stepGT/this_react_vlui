@@ -1,4 +1,4 @@
-import { Table, Container } from 'react-bootstrap';
+import { Form, Table, Container } from 'react-bootstrap';
 const Header = ({ head, description, data }) => {
   const keys = data ? Object.keys(data) : [];
   const values = data ? Object.values(data) : [];
@@ -19,6 +19,19 @@ const Header = ({ head, description, data }) => {
           <tbody>
             <tr>
               {values.map((el, ind) => {
+                if (Array.isArray(el)) {
+                  return (
+                    <td key={ind}>
+                      <Form.Select size="lg">
+                        {el.map((item, index) => (
+                          <option key={index} value={item}>
+                            {item}
+                          </option>
+                        ))}
+                      </Form.Select>
+                    </td>
+                  );
+                }
                 return <td key={ind}>{el}</td>;
               })}
             </tr>
