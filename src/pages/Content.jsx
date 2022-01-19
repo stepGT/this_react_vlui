@@ -32,7 +32,7 @@ const Content = () => {
   return (
     <div>
       <Meta title={pageTitle} />
-      <ContentHeader data={getContent} description={pageDescription} head={pageTitle} />
+      <ContentHeader isFetching={isFetching} data={getContent} description={pageDescription} head={pageTitle} />
     </div>
   );
 };
