@@ -1,13 +1,20 @@
-import { useState } from 'react';
-import { Form, Row, Container } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { Form, Row, Container, Select } from 'react-bootstrap';
 import Loader from '../components/Loader';
 
 const ContentHeader = ({ data, description, head, isFetching }) => {
   const keys = data ? Object.keys(data) : [];
-  const [valueRadio, setValueRadio] = useState('version');
+  const [valueRadio, setValueRadio] = useState('acts');
+  const [allContent, setAllContent] = useState([]);
+  const [itemContent, setItemContent] = useState([]);
   const handleChange = (e) => {
     setValueRadio(e.target.value);
+    setItemContent(allContent[e.target.value]);
   };
+  useEffect(() => {
+    setAllContent(data);
+    setItemContent(allContent['acts']);
+  }, [data, allContent]);
   return (
     <Container>
       <div className="starter-template text-center mt-5">
@@ -17,9 +24,9 @@ const ContentHeader = ({ data, description, head, isFetching }) => {
           {isFetching ? (
             <Loader />
           ) : (
-            <Form>
-              {keys &&
-                keys.map((key, index) => {
+            <>
+              <Form>
+                {keys.sort().map((key, index) => {
                   let checked = valueRadio === key ? true : false;
                   return (
                     <Form.Check
@@ -33,7 +40,21 @@ const ContentHeader = ({ data, description, head, isFetching }) => {
                     />
                   );
                 })}
-            </Form>
+              </Form>
+              <Form.Select className="mt-3" aria-label="Default select example">
+                {Array.isArray(itemContent) ? (
+                  itemContent.map((item) => {
+                    return (
+                      <option key={item.id} value={item.id}>
+                        {item.name}
+                      </option>
+                    );
+                  })
+                ) : (
+                  <option>{itemContent}</option>
+                )}
+              </Form.Select>
+            </>
           )}
         </Row>
       </div>
