@@ -7,3 +7,7 @@ body {
 main {
   min-height: 80vh;
 }
+
+input[type='radio']:hover {
+  cursor: pointer;
+}
