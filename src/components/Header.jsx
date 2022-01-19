@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Form, Row, Table, Container } from 'react-bootstrap';
-const Header = ({ head, description, data, regions, fetchStatus }) => {
+import Loader from './Loader';
+const Header = ({ head, description, data, regions, fetchStatus,isFetching }) => {
   const keys = data ? Object.keys(data) : [];
   const values = data ? Object.values(data) : [];
   const [valueRadio, setValueRadio] = useState('EU');
@@ -32,35 +33,39 @@ const Header = ({ head, description, data, regions, fetchStatus }) => {
             })}
           </Form>
         </Row>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              {keys.map((el, ind) => {
-                return <th key={ind}>{el}</th>;
-              })}
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              {values.map((el, ind) => {
-                if (Array.isArray(el)) {
-                  return (
-                    <td key={ind}>
-                      <Form.Select size="lg">
-                        {el.map((item, index) => (
-                          <option key={index} value={item}>
-                            {item}
-                          </option>
-                        ))}
-                      </Form.Select>
-                    </td>
-                  );
-                }
-                return <td key={ind}>{el}</td>;
-              })}
-            </tr>
-          </tbody>
-        </Table>
+        {isFetching ? (
+          <Loader />
+        ) : (
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                {keys.map((el, ind) => {
+                  return <th key={ind}>{el}</th>;
+                })}
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {values.map((el, ind) => {
+                  if (Array.isArray(el)) {
+                    return (
+                      <td key={ind}>
+                        <Form.Select size="lg">
+                          {el.map((item, index) => (
+                            <option key={index} value={item}>
+                              {item}
+                            </option>
+                          ))}
+                        </Form.Select>
+                      </td>
+                    );
+                  }
+                  return <td key={ind}>{el}</td>;
+                })}
+              </tr>
+            </tbody>
+          </Table>
+        )}
       </div>
     </Container>
   );
