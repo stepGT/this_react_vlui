@@ -2,10 +2,9 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../components/Header';
 import Meta from '../components/Meta';
+import { REGIONS } from '../constants';
 
 const { REACT_APP_VAL_API_KEY } = process.env;
-// REGIONS
-const regions = ['AP', 'BR', 'EU', 'KR', 'LATAM', 'NA'];
 
 const valStatusV1 = `https://eu.api.riotgames.com/val/status/v1/platform-data?api_key=${REACT_APP_VAL_API_KEY}`;
 
@@ -34,7 +33,7 @@ const Status = () => {
   return (
     <div>
       <Meta title={pageTitle} />
-      <Header isFetching={isFetching} fetchStatus={fetchStatus} regions={regions} data={getStatus} head={pageTitle} description={pageDescription} />
+      <Header isFetching={isFetching} fetchStatus={fetchStatus} regions={REGIONS} data={getStatus} head={pageTitle} description={pageDescription} />
     </div>
   );
 };

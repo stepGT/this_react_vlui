@@ -1,0 +1,1 @@
+export const REGIONS = ['AP', 'BR', 'EU', 'KR', 'LATAM', 'NA'];
