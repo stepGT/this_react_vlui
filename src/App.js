@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux'
+import axios from 'axios';
 import { Container } from 'react-bootstrap';
 import { Routes, Route } from 'react-router-dom';
 import "./App.css";
@@ -6,8 +9,28 @@ import Layout from './layout/Layout';
 
 import Content from './pages/Content';
 import Status from "./pages/Status";
+import { setValues } from './features/status/statusSlice';
+
+const { REACT_APP_VAL_API_KEY } = process.env;
 
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const fetchData = async (region = 'br') => {
+      try {
+        const response = await axios
+          .get(
+            `https://${region}.api.riotgames.com/val/status/v1/platform-data?api_key=${REACT_APP_VAL_API_KEY}`
+          )
+          .then((res) => res.data);
+          dispatch(setValues(response));
+      } catch (error) {
+        console.log('error', error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <Layout>
       <Container>

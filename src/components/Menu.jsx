@@ -1,13 +1,8 @@
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Nav, Container, Button } from 'react-bootstrap';
-import { setValues } from '../features/status/statusSlice';
 
 const Menu = () => {
-  const dispatch = useDispatch();
-  const handlerClick = () => {
-    dispatch(setValues('br'));
-  };
+  
   return (
     <Container>
       <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
@@ -28,11 +23,6 @@ const Menu = () => {
               <Link className="pe-3" to="/status">
                 <Button variant="secondary">Status</Button>
               </Link>
-            </li>
-            <li>
-              <Button onClick={handlerClick} variant="outline-danger">
-                Test
-              </Button>
             </li>
           </ul>
         </Nav>
