@@ -23,14 +23,15 @@ const App = () => {
             `https://${region}.api.riotgames.com/val/status/v1/platform-data?api_key=${REACT_APP_VAL_API_KEY}`
           )
           .then((res) => res.data);
-          dispatch(setValues(response));
+        dispatch(setValues(response));
       } catch (error) {
         console.log('error', error);
       }
     };
 
-    fetchData();
-  }, []);
+    fetchData('na');
+    fetchData('latam');
+  }, [dispatch]);
   return (
     <Layout>
       <Container>

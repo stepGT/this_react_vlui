@@ -2,9 +2,16 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const statusSlice = createSlice({
   name: 'status',
-  initialState: {},
+  initialState: [],
   reducers: {
-    setValues: (state, action) => (state = action.payload),
+    setValues: {
+      reducer: (state, action) => {
+        state.push(action.payload);
+      },
+      prepare: (text) => {
+        return { payload: text };
+      },
+    },
   },
 });
 
