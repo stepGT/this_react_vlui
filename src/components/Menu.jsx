@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Nav, Container } from 'react-bootstrap';
+import { Nav, Container, Button } from 'react-bootstrap';
 
 const Menu = () => {
   return (
@@ -14,19 +14,16 @@ const Menu = () => {
         <Nav>
           <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <li>
-              <Link to="/" className="nav-link px-2 link-secondary">
-                Content
+              <Link className='pe-3' to="/">
+                <Button variant="primary">Content</Button>
+              </Link>
+            </li>
+            <li>
+              <Link to="/status">
+                <Button variant="secondary">Status</Button>
               </Link>
             </li>
           </ul>
-
-          <div className="col-md-3 text-end">
-            <Link to="/status">
-              <button type="button" className="btn btn-outline-primary me-2">
-                Status
-              </button>
-            </Link>
-          </div>
         </Nav>
       </header>
     </Container>
