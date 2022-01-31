@@ -10,6 +10,7 @@ import Layout from './layout/Layout';
 import Content from './pages/Content';
 import Status from "./pages/Status";
 import { setValues } from './features/status/statusSlice';
+import { REGIONS } from './constants';
 
 const { REACT_APP_VAL_API_KEY } = process.env;
 
@@ -28,9 +29,8 @@ const App = () => {
         console.log('error', error);
       }
     };
-
-    fetchData('na');
-    fetchData('latam');
+    // Fetch all status data
+    setTimeout(() => REGIONS.map(el => fetchData(el)), 1000);
   }, [dispatch]);
   return (
     <Layout>

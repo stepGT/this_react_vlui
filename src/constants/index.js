@@ -1,1 +1,1 @@
-export const REGIONS = ['AP', 'BR', 'EU', 'KR', 'LATAM', 'NA'];
+export const REGIONS = ['ap', 'br', 'eu', 'kr', 'latam', 'na'];
