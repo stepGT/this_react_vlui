@@ -6,7 +6,7 @@ import { test } from '../redux/valStatusV1Slice';
 const Menu = () => {
   const dispatch = useDispatch();
   const handlerClick = () => {
-    dispatch(test());
+    dispatch(test('br'));
   };
   return (
     <Container>
