@@ -12,14 +12,14 @@ const fetchStatus = (region) => {
     });
 };
 
-export const valStatusV1Slice = createSlice({
+export const statusSlice = createSlice({
   name: 'status',
   initialState: {
     values: [],
   },
   reducers: {
-    test: (state, action) => {
-      console.log('state', state);
+    setValues: (state, action) => {
+      console.log('state', state.values);
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
@@ -30,6 +30,6 @@ export const valStatusV1Slice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { test } = valStatusV1Slice.actions;
+export const { setValues } = statusSlice.actions;
 
-export default valStatusV1Slice.reducer;
+export default statusSlice.reducer;

@@ -1,12 +1,12 @@
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Nav, Container, Button } from 'react-bootstrap';
-import { test } from '../redux/valStatusV1Slice';
+import { setValues } from '../features/status/statusSlice';
 
 const Menu = () => {
   const dispatch = useDispatch();
   const handlerClick = () => {
-    dispatch(test('br'));
+    dispatch(setValues('br'));
   };
   return (
     <Container>

@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import valStatusV1Slice from './valStatusV1Slice';
+import statusSlice from '../features/status/statusSlice';
 
 export default configureStore({
   reducer: {
-    status: valStatusV1Slice,
+    status: statusSlice,
   },
 });
