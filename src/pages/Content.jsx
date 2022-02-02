@@ -11,14 +11,6 @@ const Content = () => {
   const [getContent, setGetContent] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
 
-  const fetchContent = region => {
-    setIsFetching(true);
-    axios.get(`https://${region}.api.riotgames.com/val/content/v1/contents?api_key=${REACT_APP_VAL_API_KEY}`).then((res) => {
-      setGetContent(res.data);
-      setIsFetching(false);
-    });
-  }
-
   useEffect(() => {
     axios.get(valContentV1).then((res) => {
       setGetContent(res.data);

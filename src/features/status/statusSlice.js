@@ -4,13 +4,8 @@ export const statusSlice = createSlice({
   name: 'status',
   initialState: [],
   reducers: {
-    setValues: {
-      reducer: (state, action) => {
-        state.push(action.payload);
-      },
-      prepare: (text) => {
-        return { payload: text };
-      },
+    setValues(state, action) {
+      state.push(action.payload);
     },
   },
 });

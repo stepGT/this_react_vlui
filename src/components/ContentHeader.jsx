@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Form, Row, Container, Select } from 'react-bootstrap';
+import { Form, Row, Container } from 'react-bootstrap';
 import Loader from '../components/Loader';
 
 const ContentHeader = ({ data, description, head, isFetching }) => {
